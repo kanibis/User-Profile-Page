@@ -1,24 +1,34 @@
-import logo from './logo.svg';
 import './App.css';
+import NavigationList from './NavigationList';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import UserDetails from './user-dashboard/UserDetails';
+import CompanyDetails from './user-dashboard/CompanyDetails';
+import CreditCardDetails from './user-dashboard/CreditCardDetails';
+import PreviousProductDetails from './user-dashboard/PreviousProductDetails';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        <div className="App">
+          <div className='user-wrapper'>
+            <div className='navigation-container'>
+              <NavigationList />
+            </div>
+            <div className='user-info-container'>
+                <Routes>
+                  <Route exact path="/" element={<UserDetails/>}/>
+                  <Route path="/company-details" element={<CompanyDetails/>} />
+                  <Route path="/credit-card-details" element={<CreditCardDetails/>} />
+                  <Route path="/previous-product-details" element={<PreviousProductDetails/>} />
+                </Routes>
+            </div>
+          </div>
+        </div>
+      </Router>
+    </>
+    
   );
 }
 
